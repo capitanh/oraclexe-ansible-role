@@ -1,6 +1,6 @@
 galaxy_info:
   author: Luis Novo
-  description:
+  description: This role downloads and install Oracle Express Edition 11g Release 2 (version 11.2.0-1.0.x86_64)
   company:
 
   # If the issue tracker for your role is not on github, uncomment the
@@ -14,7 +14,7 @@ galaxy_info:
   # - GPLv3
   # - Apache
   # - CC-BY
-  license: license (GPLv2, CC-BY, etc)
+  license: "Simplified BSD License"
 
   min_ansible_version: 2.3.2.0
 
