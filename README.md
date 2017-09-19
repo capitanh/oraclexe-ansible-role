@@ -10,6 +10,7 @@ Centos 6-7 or RedHat 6-7
 
 Role Variables
 --------------
+This role requires that the following variables are defined elsewhere in the playbook that uses it:
 ```yaml
 - download_dir:           # Directory to host downloaded archive
 - oracle_http_port:       # Oracle Web Interface http port
@@ -26,11 +27,17 @@ None
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-        - oraclexe
+Register the role in requirements.yml:
+```yaml
+- src: capitanh.oraclexe-ansible-role
+  name: oraclexe
+```
+Include it in your playbooks:
+```yaml
+- hosts: servers
+  roles:
+    - oraclexe
+```
 
 License
 -------
