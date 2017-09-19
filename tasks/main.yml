@@ -27,7 +27,7 @@
 - name: Copy response template
   template:
     src: response.txt
-    dest: "{{download_dir}}/response/response.txt"
+    dest: "{{download_dir}}/response/"
 
 - name: install oracle XE rpm
   yum:
