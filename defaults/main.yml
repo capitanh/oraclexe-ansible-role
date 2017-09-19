@@ -1,2 +1,6 @@
 ---
 # defaults file for oraclexe
+download_dir:          /tmp            # Directoey for downloaded files
+oracle_http_port:      8090            # Oracle port for http connections
+oracle_listener_port:  1521            # Oracle listener port
+oracle_password:       adminpasswd     # Admin, sys and system users passwords
