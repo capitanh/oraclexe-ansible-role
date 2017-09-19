@@ -1,0 +1,5 @@
+{{oracle_http_port}}
+{{oracle_listener_port}}
+{{oracle_password}}
+{{oracle_password}}
+y
