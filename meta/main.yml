@@ -33,14 +33,10 @@ galaxy_info:
   # platforms is a list of platforms, and each platform has a name and a list of versions.
   #
   platforms:
-  - name: CentOS
-    versions:
-      - 6
-      - 7
-  - name: RedHat
-    versions:
-      - 6
-      - 7
+    - name: EL
+      versions:
+        - 5
+        - 6
 
   galaxy_tags:
     - oracle
