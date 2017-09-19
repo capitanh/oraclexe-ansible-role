@@ -11,9 +11,9 @@ Centos 6-7 or RedHat 6-7
 Role Variables
 --------------
 ```yaml
-- download_dir:						# Directory to host downloaded archive
-- oracle_http_port:				# Oracle Web Interface http port
-- oracle_listener_port:		# Oracle listener port
+- download_dir:           # Directory to host downloaded archive
+- oracle_http_port:       # Oracle Web Interface http port
+- oracle_listener_port:   # Oracle listener port
 - oracle_password:        # Oracle SYSTEM and SYS users initial password
 
 ```
