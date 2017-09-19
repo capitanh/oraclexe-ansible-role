@@ -27,7 +27,7 @@
 - name: Copy response template
   template:
     src: response.txt
-    dest: "{{download_dir}}/response"
+    dest: "{{download_dir}}/response/response.txt"
 
 - name: install oracle XE rpm
   yum:
@@ -35,7 +35,7 @@
     state: present
 
 - name: Configure ddbb
-  shell: "/etc/init.d/oracle-xe configure < {{download_dir}}/response.txt"
+  shell: "/etc/init.d/oracle-xe configure < {{download_dir}}/response/response.txt"
 
 - name: Set environment variables
   script: oracle_env.sh
