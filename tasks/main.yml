@@ -55,7 +55,3 @@
   copy:
     src: enableaccess.sql
     dest: "{{download_dir}}"
-
-#- name: Execute enableaccess sql script to enable remote clients
-#  command: "chdir=/tmp sqlplus system/{{oracle_password}} @enableaccess.sql"
-
