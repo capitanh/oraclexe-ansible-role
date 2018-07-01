@@ -35,6 +35,7 @@
   yum:
     name: "{{download_dir}}/Disk1/oracle-xe-11.2.0-1.0.x86_64.rpm"
     state: present
+    disable_gpg_check: yes
 
 - name: Configure ddbb
   shell: "/etc/init.d/oracle-xe configure < {{download_dir}}/response.txt"
