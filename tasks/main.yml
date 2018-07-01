@@ -12,6 +12,7 @@
     - gcc
     - libaio
     - bc
+    - swapspace
 
 #- name: Download installer
 #  get_url:
