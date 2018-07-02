@@ -58,3 +58,8 @@
   copy:
     src: enableaccess.sql
     dest: "{{download_dir}}"
+
+- name: Enable remote access
+  command: sqlplus system/adminpasswd @enableaccess.sql
+  args:
+    chdir: "{{download_dir}}"
