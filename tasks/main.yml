@@ -13,12 +13,6 @@
     - libaio
     - bc
 
-#- name: Download installer
-#  get_url:
-#    url: http://download.oracle.com/otn/linux/oracle11g/xe/oracle-xe-11.2.0-1.0.x86_64.rpm.zip
-#    headers: 'Cookie: oraclelicense=accept-sqldev-cookie; OHS-edelivery.oracle.com-443=8A0CD10789364AAF2AF8CA69BBBFF5535FFBD0C067A8F14DD54CB139CD9C7BDDFCCA4C682A2E9AAFC9E3670C0CE1B2CE593C7AFE8BC5448819B4215CB188A892DDF4FFB01E74279F2945D9F1686FC59F11FEFF2325F90355ADBB09998DF92915292C86DD39A00491433383A55E9A75FF44631B7F391D52643E82615F6C3927176F1554B4157DF1EB2495248608DD8B66EDAE77B1626D02DFEF2B73BC3CA889B640726209B7571179BBC94D1606813B4C1D3C0374BC1F34F33D0287239102D000F6C1FDD564527F4CD108364000099E70E0CB46E160AB47987A4935CEB3ADF65B26930ED1247231DD11DF8D0449862585~'
-#    dest: "{{download_dir}}"
-
 - name: Copy and Unzip installer
   unarchive:
     dest: "{{download_dir}}"
@@ -55,16 +49,3 @@
     owner: root
     group: root
     mode: 0644
-
-#- name: Set environment variables before executing sqlplus
-#  shell: /u01/app/oracle/product/11.2.0/xe/bin/oracle_env.sh
-#
-#- name: copy enableaccess script
-#  copy:
-#    src: enableaccess.sql
-#    dest: "{{download_dir}}"
-#
-#- name: Enable remote access
-#  command: /u01/app/oracle/product/11.2.0/xe/bin/sqlplus system/adminpasswd @enableaccess.sql
-#  args:
-#    chdir: "{{download_dir}}"
