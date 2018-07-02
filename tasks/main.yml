@@ -43,7 +43,9 @@
     disable_gpg_check: yes
 
 - name: Configure ddbb
-  shell: "/etc/init.d/oracle-xe configure < {{download_dir}}/response.txt"
+  command: "/etc/init.d/oracle-xe configure < {{download_dir}}/response.txt"
+  register: command_result
+  failed_when: "'is already configured' not in command_result.stdout and command_result.rc <> 0"
 
 - name: Copy env vbles script for autoload after boot
   copy:
