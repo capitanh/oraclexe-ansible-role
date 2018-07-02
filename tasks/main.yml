@@ -56,15 +56,15 @@
     group: root
     mode: 0644
 
-- name: Set environment variables before executing sqlplus
-  shell: /u01/app/oracle/product/11.2.0/xe/bin/oracle_env.sh
-
-- name: copy enableaccess script
-  copy:
-    src: enableaccess.sql
-    dest: "{{download_dir}}"
-
-- name: Enable remote access
-  command: /u01/app/oracle/product/11.2.0/xe/bin/sqlplus system/adminpasswd @enableaccess.sql
-  args:
-    chdir: "{{download_dir}}"
+#- name: Set environment variables before executing sqlplus
+#  shell: /u01/app/oracle/product/11.2.0/xe/bin/oracle_env.sh
+#
+#- name: copy enableaccess script
+#  copy:
+#    src: enableaccess.sql
+#    dest: "{{download_dir}}"
+#
+#- name: Enable remote access
+#  command: /u01/app/oracle/product/11.2.0/xe/bin/sqlplus system/adminpasswd @enableaccess.sql
+#  args:
+#    chdir: "{{download_dir}}"
