@@ -60,6 +60,6 @@
     dest: "{{download_dir}}"
 
 - name: Enable remote access
-  command: sqlplus system/adminpasswd @enableaccess.sql
+  command: /u01/app/oracle/product/11.2.0/xe/bin/sqlplus system/adminpasswd @enableaccess.sql
   args:
     chdir: "{{download_dir}}"
