@@ -1,12 +1,18 @@
 Oracle Express Ansible Role
 =========
 
-This role downloads and install Oracle Express Edition 11g Release 2 (version 11.2.0-1.0.x86_64)
+This role installs Oracle Express Edition 11g Release 2 (version 11.2.0-1.0.x86_64)
 
 Requirements
 ------------
-
 Centos 6-7 or RedHat 6-7
+You have to manually download oracle xe rpm installer from here:
+
+http://download.oracle.com/otn/linux/oracle11g/xe/oracle-xe-11.2.0-1.0.x86_64.rpm.zip
+
+Save the file in a local dir and set a variable pointing to that dir (see #Role Variables)
+
+
 
 Role Variables
 --------------
@@ -16,6 +22,7 @@ This role requires that the following variables are defined elsewhere in the pla
 - oracle_http_port:       # Oracle Web Interface http port
 - oracle_listener_port:   # Oracle listener port
 - oracle_password:        # Oracle SYSTEM and SYS users initial password
+- package_dir:            # Local path in host where rpm installer is downloaded
 
 ```
 
