@@ -31,6 +31,11 @@
     src: response.txt
     dest: "{{download_dir}}"
 
+- name: Enable swap
+  script: swap.sh
+  args:
+    creates: /swapfile
+
 - name: install oracle XE rpm
   yum:
     name: "{{download_dir}}/Disk1/oracle-xe-11.2.0-1.0.x86_64.rpm"
