@@ -56,6 +56,9 @@
     group: root
     mode: 0644
 
+- name: Set environment variables before executing sqlplus
+  command: /u01/app/oracle/product/11.2.0/xe/bin/oracle_env.sh
+
 - name: copy enableaccess script
   copy:
     src: enableaccess.sql
