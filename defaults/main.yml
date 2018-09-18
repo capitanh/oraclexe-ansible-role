@@ -4,3 +4,12 @@ download_dir:          /tmp            # Directoey for downloaded files
 oracle_http_port:      8090            # Oracle port for http connections
 oracle_listener_port:  1521            # Oracle listener port
 package_dir:           /tmp            # Local path in host where rpm installer is downloaded
+oracle_env:
+  ORACLE_HOME: /u01/app/oracle/product/11.2.0/xe
+  LD_LIBRARY_PATH: /u01/app/oracle/product/11.2.0/xe/lib
+roles:
+- name: approle1
+  role_grants: 
+  - 'create session'
+  - 'select any table'
+  state: present  

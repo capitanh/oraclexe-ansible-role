@@ -49,3 +49,10 @@
     owner: root
     group: root
     mode: 0644
+
+- name: Create Application user
+  oracle_user: hostname=localhost service_name=XE mode=normal user=system password=adminpasswd schema=newschema schema_password=passwd state=present grants={{item.1}}
+  environment: oracle_env
+  with_subelements: 
+      - passw_user
+      - grants
