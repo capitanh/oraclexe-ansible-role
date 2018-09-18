@@ -50,3 +50,7 @@
     owner: root
     group: root
     mode: 0644
+
+- name: Install required python modules
+  pip:
+    name: cx_Oracle
