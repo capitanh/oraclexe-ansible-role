@@ -12,6 +12,7 @@
     - gcc
     - libaio
     - bc
+    - python-pip
 
 - name: Copy and Unzip installer
   unarchive:
