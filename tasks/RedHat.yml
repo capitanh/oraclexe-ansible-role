@@ -1,0 +1,20 @@
+---
+- name: Install required packages
+  yum:
+    name:
+      - unzip
+      - glibc
+      - make
+      - binutils
+      - gcc
+      - libaio
+      - bc
+      - python-pip
+    state: present
+    disable_gpg_check: yes
+
+- name: install oracle XE rpm
+  yum:
+    name: "{{download_dir}}/Disk1/oracle-xe-11.2.0-1.0.x86_64.rpm"
+    state: present
+    disable_gpg_check: yes

@@ -1,19 +1,4 @@
 ---
-- name: Install required packages
-  yum:
-    name: "{{item}}"
-    state: present
-    disable_gpg_check: yes
-  with_items:
-    - unzip
-    - glibc
-    - make
-    - binutils
-    - gcc
-    - libaio
-    - bc
-    - python-pip
-
 - name: Copy and Unzip installer
   unarchive:
     dest: "{{download_dir}}"
@@ -26,11 +11,7 @@
   args:
     creates: /swapfile
 
-- name: install oracle XE rpm
-  yum:
-    name: "{{download_dir}}/Disk1/oracle-xe-11.2.0-1.0.x86_64.rpm"
-    state: present
-    disable_gpg_check: yes
+- include_tasks: "{{ansible_os_family}}.yml"
 
 - name: Copy response template
   template:
