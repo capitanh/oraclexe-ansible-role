@@ -4,3 +4,4 @@ download_dir:          /tmp            # Directoey for downloaded files
 oracle_http_port:      8090            # Oracle port for http connections
 oracle_listener_port:  1521            # Oracle listener port
 package_dir:           /tmp            # Local path in host where rpm installer is downloaded
+oraclexe_service_name: oracle-xe       # OS service name

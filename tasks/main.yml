@@ -35,3 +35,8 @@
 - name: Install required python modules
   pip:
     name: cx_Oracle
+
+- name: Force service start
+  service:
+    name: "{{oraclexe_service_name}}"
+    state: restarted
