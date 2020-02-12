@@ -1,0 +1,11 @@
+---
+- name: Stop oracle-xe service
+  service:
+    name: "{{oraclexe_service_name}}"
+    state: stopped
+
+- name: Start oracle-xe service
+  service:
+    name: "{{oraclexe_service_name}}"
+    state: started
+
