@@ -11,7 +11,29 @@
   args:
     creates: /swapfile
 
-- include_tasks: "{{ansible_os_family}}.yml"
+- name: Install required packages
+  yum:
+    name:
+      - unzip
+      - glibc
+      - make
+      - binutils
+      - gcc
+      - libaio
+      - bc
+    state: present
+    disable_gpg_check: yes
+
+- name: install oracle XE rpm
+  yum:
+    name: "{{download_dir}}/Disk1/oracle-xe-11.2.0-1.0.x86_64.rpm"
+    state: present
+    disable_gpg_check: yes
+
+- name: Install required python modules
+  pip:
+    name: cx_Oracle
+    executable: /usr/bin/pip3    
 
 - name: Copy response template
   template:
@@ -31,10 +53,6 @@
     owner: root
     group: root
     mode: 0644
-
-- name: Install required python modules
-  pip:
-    name: cx_Oracle
 
 - name: Force service start
   service:
