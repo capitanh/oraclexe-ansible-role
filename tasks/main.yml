@@ -21,6 +21,7 @@
       - gcc
       - libaio
       - bc
+      - python3
     state: present
     disable_gpg_check: yes
 
@@ -33,7 +34,7 @@
 - name: Install required python modules
   pip:
     name: cx_Oracle
-    #executable: /usr/bin/pip3    
+    executable: /usr/bin/pip3
 
 - name: Copy response template
   template:
