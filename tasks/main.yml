@@ -22,6 +22,7 @@
       - libaio
       - bc
       - python3
+      - libnsl
     state: present
     disable_gpg_check: yes
 
