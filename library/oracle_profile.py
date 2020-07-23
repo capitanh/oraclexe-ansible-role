@@ -123,7 +123,8 @@ else:
 
 # cmp def for python 3
 def cmp(x, y):
-    return operator.sub(operator.gt(x,y),operator.lt(x,y))
+    #return (x > y) - (x < y)
+    return operator.gt(x,y) - operator.lt(x,y)
 
 # Check if the profile exists
 def check_profile_exists(cursor, module, msg, name):
@@ -185,7 +186,8 @@ def ensure_profile_state(cursor, module, msg, name, state, attribute_name, attri
             current_attributes = get_current_attributes (cursor, module, msg, name, attribute_names_)
 
             # Convert to dict and compare current with wanted
-            if cmp(dict(current_attributes),dict(wanted_attributes)) is not 0:
+            #if cmp(dict(current_attributes),dict(wanted_attributes)) is not 0:
+            if (dict(current_attributes) - dict(wanted_attributes)) is not 0:
                 for i in wanted_attributes:
                     total_sql.append("alter profile %s limit %s %s " % (name, i[0], i[1]))
 
