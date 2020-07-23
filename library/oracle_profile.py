@@ -112,6 +112,7 @@ EXAMPLES = '''
 
 '''
 import os
+import operator
 
 try:
     import cx_Oracle
@@ -130,7 +131,8 @@ def cmp(x, y):
     and strictly positive if x > y.
     """
 
-    return (int(x) > int(y)) - (int(x) < int(y))
+    #return (x > y) - (x < y)
+    return operator.gt(x,y) - operator.lt(x,y)
 
 # Check if the profile exists
 def check_profile_exists(cursor, module, msg, name):
