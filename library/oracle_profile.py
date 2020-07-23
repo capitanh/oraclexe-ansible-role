@@ -123,7 +123,7 @@ else:
 
 # cmp def for python 3
 def cmp(x, y):
-    return operator.gt(x,y) - operator.lt(x,y)
+    return operator.sub(operator.gt(x,y),operator.lt(x,y))
 
 # Check if the profile exists
 def check_profile_exists(cursor, module, msg, name):
