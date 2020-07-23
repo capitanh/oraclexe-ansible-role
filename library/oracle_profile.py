@@ -120,6 +120,17 @@ except ImportError:
 else:
     cx_oracle_exists = True
 
+# cmp def for python 3
+def cmp(x, y):
+    """
+    Replacement for built-in function cmp that was removed in Python 3
+
+    Compare the two objects x and y and return an integer according to
+    the outcome. The return value is negative if x < y, zero if x == y
+    and strictly positive if x > y.
+    """
+
+    return (x > y) - (x < y)
 
 # Check if the profile exists
 def check_profile_exists(cursor, module, msg, name):
@@ -181,8 +192,6 @@ def ensure_profile_state(cursor, module, msg, name, state, attribute_name, attri
             current_attributes = get_current_attributes (cursor, module, msg, name, attribute_names_)
 
             # Convert to dict and compare current with wanted
-            def cmp(a, b):
-                return (a > b) - (a < b)
             if cmp(dict(current_attributes),dict(wanted_attributes)) is not 0:
                 for i in wanted_attributes:
                     total_sql.append("alter profile %s limit %s %s " % (name, i[0], i[1]))
