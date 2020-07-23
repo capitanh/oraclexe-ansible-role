@@ -130,7 +130,7 @@ def cmp(x, y):
     and strictly positive if x > y.
     """
 
-    return (x > y) - (x < y)
+    return (int(x) > int(y)) - (int(x) < int(y))
 
 # Check if the profile exists
 def check_profile_exists(cursor, module, msg, name):
