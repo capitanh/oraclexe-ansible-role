@@ -59,4 +59,4 @@
 - name: Force service start
   service:
     name: "{{oraclexe_service_name}}"
-    state: restarted
+    state: started
