@@ -72,6 +72,7 @@ oracle_role: hostname=localhost service_name=orcl user=system password=manager r
 
 
 '''
+import operator
 
 try:
     import cx_Oracle
@@ -114,7 +115,7 @@ def check_role_exists(module, msg, cursor, role, auth):
             return False
 
     # if result > 0:
-    if __gt__(result,0):
+    if operator.gt(result,0):
 
         msg[0] = 'The role (%s) already exists' % role
         return True
