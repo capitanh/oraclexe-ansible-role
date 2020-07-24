@@ -112,7 +112,6 @@ EXAMPLES = '''
 
 '''
 import os
-import operator
 
 try:
     import cx_Oracle
@@ -120,11 +119,6 @@ except ImportError:
     cx_oracle_exists = False
 else:
     cx_oracle_exists = True
-
-# cmp def for python 3
-def cmp(x, y):
-    #return (x > y) - (x < y)
-    return operator.gt(x,y) - operator.lt(x,y)
 
 # Check if the profile exists
 def check_profile_exists(cursor, module, msg, name):
@@ -187,9 +181,8 @@ def ensure_profile_state(cursor, module, msg, name, state, attribute_name, attri
 
             # Convert to dict and compare current with wanted
             #if cmp(dict(current_attributes),dict(wanted_attributes)) is not 0:
-            if operator.sub(int(dict(current_attributes)),int(dict(wanted_attributes))) is not 0:
-                for i in wanted_attributes:
-                    total_sql.append("alter profile %s limit %s %s " % (name, i[0], i[1]))
+            for i in wanted_attributes:
+                total_sql.append("alter profile %s limit %s %s " % (name, i[0], i[1]))
 
     # module.exit_json(msg=total_sql, changed=True)
     if len(total_sql) > 0:
