@@ -72,7 +72,6 @@ oracle_role: hostname=localhost service_name=orcl user=system password=manager r
 
 
 '''
-import operator
 
 try:
     import cx_Oracle
@@ -102,8 +101,8 @@ def check_role_exists(module, msg, cursor, role, auth):
         return False
 
     role = clean_string(role)
-    sql = 'select count(*) from dba_roles where role = upper(\'%s\')' % role
-    #sql = 'select lower(role), lower(authentication_type) from dba_roles where role = upper(\'%s\')' % role
+    #sql = 'select count(*) from dba_roles where role = upper(\'%s\')' % role
+    sql = 'select lower(role), lower(authentication_type) from dba_roles where role = upper(\'%s\')' % role
 
 
     try:
@@ -115,8 +114,7 @@ def check_role_exists(module, msg, cursor, role, auth):
             return False
 
     # if result > 0:
-    if operator.__gt__(result,0):
-
+    if result[0][0] > 0:
         msg[0] = 'The role (%s) already exists' % role
         return True
 
