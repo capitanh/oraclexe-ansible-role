@@ -116,7 +116,8 @@ def check_role_exists(module, msg, cursor, role, auth):
     if result is None:
         result = 0
         return True
-    if result > 0:
+    #if result > 0:
+    else
         msg[0] = 'The role (%s) already exists' % role
         return True
 
