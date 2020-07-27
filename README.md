@@ -173,6 +173,11 @@ Include it in your playbooks:
 
 ```
 
+Credits
+-------
+This role makes intensive use of oravirt's set of ansible modules for oracle:
+https://github.com/oravirt/ansible-oracle-modules
+
 License
 -------
 BSD
