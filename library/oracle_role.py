@@ -177,7 +177,8 @@ def modify_role(module, msg, cursor, role, auth, auth_conf):
 
     currauth = get_role_specs(module, msg, cursor, role)
 
-    if lower(currauth) == lower(auth):
+    #if currauth.lower() == auth.lower():
+    if currauth == auth:
         module.exit_json(msg='The role (%s) already exists' % role, changed=False)
 
     else:
@@ -225,7 +226,7 @@ def get_role_specs(module, msg, cursor, role):
     try:
         cursor.execute(sql)
         #result = (cursor.fetchall()[0][0])
-        result = (cursor.fetchall())
+        result = (cursor.fetchone())
     except cx_Oracle.DatabaseError as exc:
         error, = exc.args
         msg[0] = 'Blergh, something went wrong while getting the role auth scheme - %s sql: %s' % (error.message, sql)
