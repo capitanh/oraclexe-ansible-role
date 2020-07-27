@@ -101,8 +101,8 @@ def check_role_exists(module, msg, cursor, role, auth):
         return False
 
     role = clean_string(role)
-    #sql = 'select count(*) from dba_roles where role = upper(\'%s\')' % role
-    sql = 'select lower(role), lower(authentication_type) from dba_roles where role = upper(\'%s\')' % role
+    sql = 'select count(*) from dba_roles where role = upper(\'%s\')' % role
+    #sql = 'select lower(role), lower(authentication_type) from dba_roles where role = upper(\'%s\')' % role
 
 
     try:
