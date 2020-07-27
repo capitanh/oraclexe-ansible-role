@@ -15,7 +15,7 @@ Save the file in a local dir and set a variable pointing to that dir (see #Role 
 
 Role Variables
 --------------
-This role requires defines the following default variables
+This role defines the following default variables
 ```yaml
 - download_dir:           /tmp       # Directory to host downloaded archive
 - oracle_http_port:       8080       # Oracle Web Interface http port
@@ -88,7 +88,10 @@ oracle_privs:
 
 Dependencies
 ------------
-None
+Requires cxOracle python module in target hosts. It should be possible to have it installed in control machine, but it has not been tested. To install cxOracle just run:
+```bash
+pip install cx_Oracle
+```
 
 Example Playbook
 ----------------
