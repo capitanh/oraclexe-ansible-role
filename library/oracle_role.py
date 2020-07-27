@@ -177,7 +177,7 @@ def modify_role(module, msg, cursor, role, auth, auth_conf):
 
     currauth = get_role_specs(module, msg, cursor, role)
 
-    if currauth.lower() == auth.lower():
+    if lower(currauth) == lower(auth):
         module.exit_json(msg='The role (%s) already exists' % role, changed=False)
 
     else:
