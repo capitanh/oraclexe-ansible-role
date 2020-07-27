@@ -5,7 +5,7 @@ This role installs Oracle Express Edition 11g Release 2 (version 11.2.0-1.0.x86_
 
 Requirements
 ------------
-Centos 6-7 or RedHat 6-7
+Centos 8 or RedHat 8 - Only python3 supported
 You have to manually download oracle xe rpm installer from here:
 
 http://download.oracle.com/otn/linux/oracle11g/xe/oracle-xe-11.2.0-1.0.x86_64.rpm.zip
@@ -16,24 +16,81 @@ Save the file in a local dir and set a variable pointing to that dir (see #Role 
 
 Role Variables
 --------------
-This role requires that the following variables are defined elsewhere in the playbook that uses it:
+This role requires defines the following default variables
 ```yaml
-- download_dir:           # Directory to host downloaded archive
-- oracle_http_port:       # Oracle Web Interface http port
-- oracle_listener_port:   # Oracle listener port
-- oracle_password:        # Oracle SYSTEM and SYS users initial password
-- package_dir:            # Local path in host where rpm installer is downloaded
-
+- download_dir:           /tmp       # Directory to host downloaded archive
+- oracle_http_port:       8080       # Oracle Web Interface http port
+- oracle_listener_port:   1521       # Oracle listener port
+- oraclexe_service_name:  oracle-xe  # OS service name
 ```
+
+And the following ones need to be defined elsewhere in the playbook that uses the role:
+```yaml
+- oracle_env:                         # Environemts vbles needed to perform sqlplus operations
+    ORACLE_HOME:          /u01/app/oracle/product/11.2.0/xe
+    LD_LIBRARY_PATH:      /u01/app/oracle/product/11.2.0/xe/lib
+    LC_ALL:               en_US.UTF-8
+- oracle_admin_user:        system      # Admin user name
+- oracle_password:                      # Admin, sys and system users passwords (maybe encripted inside a vault)
+```
+
+Usage
+--------------
+To create and modify database objects, define them in variable files as this:
+```yaml
+oracle_tablespaces:
+  - name: TABLESPACENAME                 # Table space logical name
+    datafile: tablespace-filename.dbf    # Table space physical file name
+    size: xM                             # (M for Mb, G for Gb and so on)
+
+oracle_profiles:
+  - name: PROFLENAME                     # Profile name
+    attribute_name:                      # List of attributes to be different from the defaults
+      - password_life_time
+      - password_reuse_time
+      - password_reuse_max
+    attribute_value:                     # Values of attributes in the same order
+      - unlimited
+      - unlimited
+      - unlimited
+oracle_roles:
+  - name: ROLENAME                       # Role name
+    grants:                              # List of grants for the role
+      - create table
+      - create materialized view
+      - create view
+      - create synonym
+      - create session
+      - create public synonym
+      - create trigger
+      - drop public synonym
+      - create sequence
+      - create procedure
+oracle_users:
+  - name: USERNAME                        # User account name
+    password: ***********                 # Account password (maybe encripted inside a vault)
+    profile: PROFILENAME                  # One of existing profiles (can be one of the previously defined above)
+    default_tablespace: TABLESPACENAME    # One of existing tablespace (can be one of the previously defined above) or don't specify this variable to use default one
+    roles:                                # List of existing roles to be applied to user (can be one of the previously defined above).
+      - role1
+      - role2
+oracle_privs:
+  - role: ROLENAME                        # List of existing roles to be granted privileges (can be one of the previously defined above). Can also be an username
+    privs:                                # System privs list to be granted to this role
+      - select
+      - insert
+      - update
+      - delete
+    objs:                                 # Object privileges to be granted to this role (can be one of the previously defined above). Can also be an username.
+      - POS_ADMIN.%
+
 
 Dependencies
 ------------
-
 None
 
 Example Playbook
 ----------------
-
 Register the role in requirements.yml:
 ```yaml
 - src: capitanh.oraclexe-ansible-role
@@ -48,10 +105,4 @@ Include it in your playbooks:
 
 License
 -------
-
 BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).

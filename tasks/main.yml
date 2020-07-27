@@ -2,7 +2,7 @@
 - name: Copy and Unzip installer
   unarchive:
     dest: "{{download_dir}}"
-    src: "{{package_dir}}/oracle-xe-11.2.0-1.0.x86_64.rpm.zip"
+    src: "{{download_dir}}/oracle-xe-11.2.0-1.0.x86_64.rpm.zip"
     creates: "{{download_dir}}/Disk1"
     copy: yes
 
