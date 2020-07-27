@@ -100,9 +100,77 @@ Register the role in requirements.yml:
 ```
 Include it in your playbooks:
 ```yaml
-- hosts: servers
+---
+- hosts: all
   roles:
-    - oraclexe
+    - capitanh.oraclexe-ansible-role
+  environment: "{{oracle_env}}"
+  tasks:
+  - name: Create oracle tablespaces
+    oracle_tablespace:
+      service_name: "{{oracle_service_name}}"
+      user: "{{oracle_admin_user}}"
+      password: "{{oracle_password}}"
+      tablespace: "{{item.name}}"
+      datafile: "{{item.datafile}}"
+      size: "{{item.size}}"
+      state: present
+    with_items: "{{oracle_tablespaces}}"
+
+  - name: Create oracle profiles
+    oracle_profile:
+      service_name: "{{oracle_service_name}}"
+      user: "{{oracle_admin_user}}"
+      password: "{{oracle_password}}"
+      state: present
+      name: "{{item.name}}"
+      attribute_name: "{{item.attribute_name}}"
+      attribute_value: "{{item.attribute_value}}"
+    with_items: "{{oracle_profiles}}"
+
+  - name: Create oracle roles
+    oracle_role:
+      service_name: "{{oracle_service_name}}"
+      user: "{{oracle_admin_user}}"
+      password: "{{oracle_password}}"
+      state: present
+      role: "{{item.name}}"
+    with_items: "{{oracle_roles}}"
+
+  - name: Assign grants to oracle roles
+    oracle_grants:
+      service_name: "{{oracle_service_name}}"
+      user: "{{oracle_admin_user}}"
+      password: "{{oracle_password}}"
+      state: present
+      role: "{{item.name}}"
+      grants: "{{item.grants}}"
+    with_items: "{{oracle_roles}}"
+
+  - name: Create oracle users
+    oracle_user:
+      service_name: "{{oracle_service_name}}"
+      user: "{{oracle_admin_user}}"
+      password: "{{oracle_password}}"
+      schema: "{{item.name}}"
+      schema_password: "{{item.password}}"
+      default_tablespace: "{{item.default_tablespace}}"
+      profile: "{{item.profile}}"
+      grants: "{{item.roles}}"
+      state: present
+    with_items: "{{oracle_users}}"
+
+  - name: Asign privs to roles
+    oracle_privs:
+      service_name: "{{oracle_service_name}}"
+      user: "{{oracle_admin_user}}"
+      password: "{{oracle_password}}"
+      state: present
+      roles: "{{item.role}}"
+      privs: "{{item.privs}}"
+      objs: "{{item.objs}}"
+    with_items: "{{oracle_privs}}"
+
 ```
 
 License
