@@ -184,6 +184,6 @@ Include it in your playbooks:
 
 Credits
 -------
-This role makes intensive use of oravirt's excellent set of ansible modules for oracle:
+This role makes intensive use of @oravirt excellent set of ansible modules for oracle:
 https://github.com/oravirt/ansible-oracle-modules
 
