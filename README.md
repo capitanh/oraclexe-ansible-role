@@ -100,6 +100,13 @@ Register the role in requirements.yml:
 - src: capitanh.oraclexe-ansible-role
   name: oraclexe
 ```
+
+Install the role in control machine:
+```bash
+ansible-galaxy install -r requirements.yml
+
+```
+
 Include it in your playbooks:
 ```yaml
 ---
