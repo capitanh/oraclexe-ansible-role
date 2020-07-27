@@ -5,8 +5,7 @@ This role installs Oracle Express Edition 11g Release 2 (version 11.2.0-1.0.x86_
 
 Requirements
 ------------
-Centos 8 or RedHat 8 - Only python3 supported
-You have to manually download oracle xe rpm installer from here:
+Centos 8 or RedHat 8 - Only python3 supported. You have to manually download oracle xe rpm installer from here:
 
 http://download.oracle.com/otn/linux/oracle11g/xe/oracle-xe-11.2.0-1.0.x86_64.rpm.zip
 
@@ -175,9 +174,6 @@ Include it in your playbooks:
 
 Credits
 -------
-This role makes intensive use of oravirt's set of ansible modules for oracle:
+This role makes intensive use of oravirt's excellent set of ansible modules for oracle:
 https://github.com/oravirt/ansible-oracle-modules
 
-License
--------
-BSD
