@@ -3,8 +3,6 @@ Oracle Express Ansible Role
 
 This role installs Oracle Express Edition 11g Release 2 (version 11.2.0-1.0.x86_64)
 
-{:toc}
-
 Requirements
 ------------
 Centos 8 or RedHat 8 - Only python3 supported. You have to manually download oracle xe rpm installer from here:
