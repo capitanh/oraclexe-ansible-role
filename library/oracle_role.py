@@ -107,7 +107,7 @@ def check_role_exists(module, msg, cursor, role, auth):
 
     try:
             cursor.execute(sql)
-            result = (cursor.fetchone())
+            result = (cursor.fetchone()[0])
     except cx_Oracle.DatabaseError as exc:
             error, = exc.args
             msg[0] = error.message+ 'sql: ' + sql
@@ -116,8 +116,7 @@ def check_role_exists(module, msg, cursor, role, auth):
     if result is None:
         result = 0
         return True
-    #if result > 0:
-    else:
+    if result > 0:
         msg[0] = 'The role (%s) already exists' % role
         return True
 

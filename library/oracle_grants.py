@@ -142,12 +142,13 @@ def check_role_exists(module, msg, cursor, role):
         return False
 
     role = clean_string(role)
-    sql = 'select role from dba_roles where role = upper(\'%s\')' % role
+    #sql = 'select role from dba_roles where role = upper(\'%s\')' % role
+    sql = 'select count(*) from dba_roles where role = upper(\'%s\')' % role
 
 
     try:
             cursor.execute(sql)
-            result = (cursor.fetchone())
+            result = (cursor.fetchone()[0])
     except cx_Oracle.DatabaseError as exc:
             error, = exc.args
             msg = error.message+ 'sql: ' + sql
