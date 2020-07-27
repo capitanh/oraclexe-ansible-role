@@ -26,12 +26,12 @@ This role requires defines the following default variables
 
 And the following ones need to be defined elsewhere in the playbook that uses the role:
 ```yaml
-- oracle_env:                         # Environemts vbles needed to perform sqlplus operations
-    ORACLE_HOME:          /u01/app/oracle/product/11.2.0/xe
-    LD_LIBRARY_PATH:      /u01/app/oracle/product/11.2.0/xe/lib
-    LC_ALL:               en_US.UTF-8
-- oracle_admin_user:        system      # Admin user name
-- oracle_password:                      # Admin, sys and system users passwords (maybe encripted inside a vault)
+- oracle_env:                        # Environemts vbles needed to perform sqlplus operations
+    ORACLE_HOME:            /u01/app/oracle/product/11.2.0/xe
+    LD_LIBRARY_PATH:        /u01/app/oracle/product/11.2.0/xe/lib
+    LC_ALL:                 en_US.UTF-8
+- oracle_admin_user:      system     # Admin user name
+- oracle_password:        ******     # Admin, sys and system users passwords (maybe encripted inside a vault)
 ```
 
 Usage
@@ -82,8 +82,10 @@ oracle_privs:
       - update
       - delete
     objs:                                 # Object privileges to be granted to this role (can be one of the previously defined above). Can also be an username.
-      - POS_ADMIN.%
-
+      - USER1.%
+      - TABLE1
+      - TABLE2
+```
 
 Dependencies
 ------------
